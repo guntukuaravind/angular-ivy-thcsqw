@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import {StorageServiceModule} from 'angular-webstorage-service';
-import {Router, Routes, RouterModule} from '@angular/router';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { StorageServiceModule } from 'angular-webstorage-service';
+import { Router, Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthguardGuard } from './Service/authguard.guard';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptor } from './Service/AuthInterceptor';
@@ -20,49 +20,45 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { NavigationComponent } from './navigation/navigation.component';
-const appRoutes:Routes=[
-  { path: '',
-    redirectTo: '/login',
-    pathMatch: 'full'
+const appRoutes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
-{
-  path:'login',
-  component: LoginComponent
-},
-{
-  path:'register',
-  component: RegisterComponent
-},
-{
-  path:'admin',
-  component: AdminComponent
-}
-,
-{
-  path:'home',
-  component: HomeComponent,
-  canActivate:[AuthguardGuard]
-},
-{
-  path:'home/cart',
-  component: CartItemComponent,
-  canActivate:[AuthguardGuard]
-},
-{
-  path:'home/address',
-  component: AddressComponent,
-  canActivate:[AuthguardGuard]
-},
-{
-  path:'admin/edit',
-  component: EditItemComponent,
-  canActivate:[AuthguardGuard]
-},
-{
-  path:'admin/order',
-  component: OrderItemComponent,
-  canActivate:[AuthguardGuard]
-}
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthguardGuard],
+  },
+  {
+    path: 'home/cart',
+    component: CartItemComponent,
+    canActivate: [AuthguardGuard],
+  },
+  {
+    path: 'home/address',
+    component: AddressComponent,
+    canActivate: [AuthguardGuard],
+  },
+  {
+    path: 'admin/edit',
+    component: EditItemComponent,
+    canActivate: [AuthguardGuard],
+  },
+  {
+    path: 'admin/order',
+    component: OrderItemComponent,
+    canActivate: [AuthguardGuard],
+  },
 ];
 
 @NgModule({
@@ -77,7 +73,7 @@ const appRoutes:Routes=[
     AddressComponent,
     AdminComponent,
     EditItemComponent,
-    OrderItemComponent
+    OrderItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,13 +85,15 @@ const appRoutes:Routes=[
     ReactiveFormsModule,
     NgbModule.forRoot(),
     NgbModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
-  providers: [{
-    provide : HTTP_INTERCEPTORS,
-    useClass: AuthInterceptor,
-    multi   : true,
-  },],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
